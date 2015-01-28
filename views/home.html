@@ -1,0 +1,17 @@
+<ul>
+    <li ng-repeat="(nameId, username) in usernames">
+        <p>{{username.name}}</p>
+        <a href="#" ng-click="deleteUsername(nameId)">Delete a name</a>
+    </li>
+</ul>
+
+<h1>i'm a home view</h1>
+
+<form ng-submit="submitUsername()">
+    <input type="text" ng-model="username.name" placeholder="Write your SteamName"/>
+    <input value="Submit your name" type="submit"/>
+</form>
+
+<p>This is a username {{usernames}}</p>
+
+<p>This is the current message in the field {{username}}</p>
