@@ -1,21 +1,15 @@
-app.controller('MainCtrl', function ($scope, UsernameFactory) {
+app.controller('MainCtrl', function ($scope, Post) {
+	$scope.posts = Post.all;
+	$scope.post = {name: ''};
 
-	$scope.usernames = [];
-	$scope.username = {name: ''};
-
-	$scope.submitUsername = function() {
-		UsernameFactory.save($scope.username);
-		$scope.username = {name: ''};
-	};
-
-	UsernameFactory.save($scope.username, function(ref) {
-		$scope.usernames[ref.name] = $scope.username;
-		$scope.username = {name: ''};
-	});
-
-	$scope.deleteUsername = function (index) {
-		UsernameFactory.delete({id: nameId}, function() {
-			delete $scope.username[nameId];
+	$scope.submitPost = function () {
+		Post.create($scope.post).then(function () {
+			$scope.post = {name: ''};
 		});
 	};
+
+	$scope.deletePost = function (post) {
+		Post.delete(post);
+	};
+
 });
